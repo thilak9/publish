@@ -15,6 +15,7 @@ class Post {
                 const db = await init()
                 const postsData = await db.collection('posts').find().toArray()
                 const posts = postsData.map(p => new Post(p))
+                if ( !posts){ throw new Error('No posts here!')}
                 resolve(posts);
             } catch (err) {
                 console.log(err);
@@ -22,4 +23,8 @@ class Post {
             }
         })
     }
+
 }
+
+
+module.exports = Post
