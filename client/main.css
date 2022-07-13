@@ -1,0 +1,12 @@
+body {
+    margin: 0;
+    background: #5c83ce
+}
+
+#app {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 200px);
+    padding: 24px;
+    gap : 10px;
+    
+}
