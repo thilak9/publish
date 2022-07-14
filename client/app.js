@@ -4,37 +4,41 @@ console.log(body)
 let form = document.getElementsByTagName('form')[0]
 console.log(form)
 let postContainer = document.querySelector("#post-container")
-// let button = document.getElementsByTagName('button')[0]
-// console.log(button)
+let button = document.getElementsByTagName('button')[0]
+console.log(button)
 
-////////////////Event Listners//////////////////////
-// button.addEventListener('click', () =>{
-//   console.log("Inside button eventlistener")
-// })
+const url = "http://localhost:3002/dogs"
 
-// form.addEventListener('submit', (e) =>{
-//   e.preventDefault()
-//   const Title = e.target[0].value;
-//   const Post = e.target[1].value;
-//   const Pseudonym = e.target[2].value;
-//   // console.log(title, post, pseudonym);
-//   fetch(url, {
-//     method: "POST",
-//     body: JSON.stringify({
-//         title: Title,
-//         pseudonym: Pseudonym,
-//         post: Post
-//     }),
-//     headers: {
-//       "Content-type": "application/json; charset=UTF-8"
-//     }
-//   }).then(response => response.json())
-//   .then(json => console.log(json));
-// })
+//////////////Event Listners//////////////////////
+button.addEventListener('click', () =>{
+  console.log("Inside button eventlistener")
+})
+
+form.addEventListener('submit', (e) =>{
+  e.preventDefault()
+  const Title = e.target[0].value;
+  const Post = e.target[1].value;
+  const Pseudonym = e.target[2].value;
+  // console.log(title, post, pseudonym);
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify({
+        title: Title,
+        pseudonym: Pseudonym,
+        post: Post
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8"
+    }
+  }).then(response => response.json())
+  .then(json => console.log(json));
+  getData()
+  location.reload();
+})
 
 
 const getData = async () => {
-  const res = await fetch("http://localhost:3002/dogs");
+  const res = await fetch(url);
   const searchData = await res.json();
   // console.log(searchData.data[0].pseudonym, "SEARCHDATA")
   items = searchData.data
@@ -44,7 +48,8 @@ const getData = async () => {
     appendPosts(item);
   })
 
-  function appendPosts(item){
+  function appendPosts(item){ 
+    // postContainer.innerHTML = "empty"
     const div_post = document.createElement("div")
     const title = document.createElement("h2")
     const pseudonym = document.createElement("h3")

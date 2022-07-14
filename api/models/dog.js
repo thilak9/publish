@@ -82,11 +82,14 @@ class Dog {
                 console.log("TRY")
                 const db = await init();
                 console.log( await db.collections("dogs"))
-                console.log(Z)
-                let dogData = await db.collection("dogs").insertOne(body);
+                console.log("z")
+                let dogData = await db.collection("dogs").insertOne({title: body.title, pseudonym: body.pseudonym, post: body.post});
                 console.log("DOGDATA")
+                console.log(dogData)
+                console.log("DOGDATA")
+                console.log("DOGDATA-OPS")
                 console.log(dogData.ops)
-                console.log("DOGDATA")
+                console.log("DOGDATA-OPS")
                 let newDog = new Dog(dogData.ops[0]);
                 resolve (newDog);
             } catch (err) {
