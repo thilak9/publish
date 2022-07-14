@@ -3,7 +3,7 @@ services:
   api:
     image: node:12.18.4
     ports:
-      - 3002:3002
+      - 3000:3000
     environment:
       - DB_CONNECTION=mongodb://publish-admin:publish-pass@db:27017
       - DB_NAME=posts
@@ -23,6 +23,6 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=publish-pass
     volumes:
       - "dbdata:/var/lib/mongodb/data"
-      - "./db/seed.js:/docker-entrypoint-initdb.d/seed.js:ro"
+      - "./db/:/docker-entrypoint-initdb.d/seed.js:ro"
 volumes:
   dbdata:
