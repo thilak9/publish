@@ -18,7 +18,7 @@ class Dog {
     constructor(data){
         this.id = data._id
         this.title = data.title;
-        this.age = data.pseudonym;
+        this.pseudonym = data.pseudonym;
         this.post = data.post;
     }
     ///////////////// POSTGRESQL /////////////////////////////
@@ -71,6 +71,31 @@ class Dog {
                 reject(`Error retrieving doggos: ${err.message}`)
             }
         })
+    }
+
+    static create(body){
+        console.log(body.title,"*****TITLE")
+        console.log(body.pseudonym,"*****PSEUDONYM")
+        console.log(body.post,"*****POST")
+        return new Promise (async (resolve, reject) => {
+            try {
+                console.log("TRY")
+                const db = await init();
+                console.log( await db.collections("dogs"))
+                console.log("z")
+                let dogData = await db.collection("dogs").insertOne({title: body.title, pseudonym: body.pseudonym, post: body.post});
+                console.log("DOGDATA")
+                console.log(dogData)
+                console.log("DOGDATA")
+                console.log("DOGDATA-OPS")
+                console.log(dogData.ops)
+                console.log("DOGDATA-OPS")
+                let newDog = new Dog(dogData.ops[0]);
+                resolve (newDog);
+            } catch (err) {
+                reject('Error creating dog');
+            }
+        });
     }
 }
 
