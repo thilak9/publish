@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Board</title>
+    <link rel="stylesheet" href = "./main.css"> 
+    <script defer src="./app.js"></script>
+</head>
+<body>
+    <div class = "modal container">
+        <div class = "modal">
+            <button class="modalBtn">&times;</button>
+            <h2 class = "modalTitle"></h2>
+            <p class = "modalBody"></p>
+        </div>
+    </div>
+    <div id = "container">
+        <h1>Post Board</h1>
+        <h4>Add a new post here</h4>
+        <form id="form-container-id" class="form-container">
+            <label for = "title" > Title
+                <input type = "text" id = "title" placeholder = "Enter title here.">
+            </label>
+            <label for = "body" > Text
+                <textarea type = "text" id = "body" cols="20" rows = "20" placeholder = "Enter text here."></textarea>
+            </label>
+            <label for = "pseudonym" > Pseudonym
+                <input type = "text" id = "pseudonym" placeholder = "Enter pseudonym title.">
+            </label>
+            <button type = "submit"> Submit </button>
+        </form>
+    </div>
+    <div class="post-container"></div>
+</body>
+
+</html>
